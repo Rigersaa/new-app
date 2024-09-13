@@ -1,5 +1,4 @@
-// src/components/ProductGrid.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import '../styles/ProductGrid.css';
 
@@ -16,9 +15,9 @@ interface ProductGridProps {
 
 const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   const { addToCart } = useCart();
-  
+
   // Pagination states
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
   // Calculate total pages
@@ -36,20 +35,15 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
     }
   };
 
-  const handleAddToCart = (product: Product) => {
-    addToCart(product);
-    // Here, we can also trigger any additional actions if needed
-  };
-
   return (
     <div>
       <section className="product-grid">
         {paginatedProducts.map((product, index) => (
           <div key={index} className="product-item">
-            <img src={product.imageUrl} alt={product.name} />
-            <p>{product.name}</p>
-            <p>{product.price}</p>
-            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+            <img src={product.imageUrl} alt={product.name} className="product-image" />
+            <p className="product-name">{product.name}</p>
+            <p className="product-price">{product.price}</p>
+            <button className="add-to-cart" onClick={() => addToCart(product)}>Add to Cart</button>
             {product.isBestseller && <span className="bestseller">Bestseller</span>}
           </div>
         ))}

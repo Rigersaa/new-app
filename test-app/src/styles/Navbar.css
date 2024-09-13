@@ -1,0 +1,124 @@
+/* src/styles/Navbar.css */
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .logo {
+    height: 32px;
+  }
+  
+  .brand-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+  
+  .navbar-toggle {
+    display: none;
+  }
+  
+  .menu-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-link {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  .navbar-link:hover {
+    color: #007bff;
+  }
+  
+  .navbar-dropdown-toggle {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .dropdown-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 0.5rem;
+  }
+  
+  .navbar-dropdown {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+  }
+  
+  .navbar-dropdown.open {
+    display: block;
+  }
+  
+  .navbar-dropdown-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navbar-dropdown-link:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .navbar-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid #ddd;
+    }
+  
+    .navbar-menu.open {
+      display: flex;
+    }
+  
+    .navbar-toggle {
+      display: inline-block;
+    }
+  }
+  

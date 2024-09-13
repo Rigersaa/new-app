@@ -1,55 +1,109 @@
-.product-details {
-  display: flex;
-  justify-content: space-between;
+/* General styling */
+.product-detail-container {
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom:4rem;
 }
 
-.product-image img {
-  width: 400px;
-  height: auto;
+/* Layout for product image and people also buy */
+.product-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top:6rem;
+}
+
+/* Product image and details */
+.product-main {
+  flex: 1; /* Take most of the width */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the image and info */
+}
+
+.product-image {
+  max-width: 400px;
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px;
 }
 
 .product-info {
-  flex: 2;
-  margin-left: 20px;
+  text-align: left;
+  margin-top: 20px;
+  width: 100%;
 }
 
-.people-also-buy {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.people-also-buy img {
-  width: 100px;
-  height: 100px;
+.product-info h1 {
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
-#root > div > div.product-detail > div.similar-products {
-  text-align: right;
-  margin-top: -9rem;
-  margin-right: 12rem;
-  gap: 20px;
+.product-info p {
+  margin: 5px 0;
+  line-height: 1.6;
 }
 
-
-.product-info {
+/* People Also Buy Section */
+.similar-products {
+  flex: 0.5; /* Smaller column for recommendations */
   display: flex;
   flex-direction: column;
-  max-width: 600px; /* Set max width for product info */
+  align-items: flex-end; /* Align to the right */
+  text-align: right;
 }
 
-.product-info h1,
-.product-info p {
-  margin: 0;
-  line-height: 1.5; /* Improve readability */
+.similar-products h2 {
+  margin-bottom: 20px;
 }
 
+.recommendations {
+  display: flex;
+  gap: 10px;
+}
 
-#root > div > div.product-detail > div.details {
-    text-align: right;
-    margin-right: 12rem;
-    margin-top: 4rem;
+.recommendations img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Product details (dimensions and size) */
+.details {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.details p {
+  margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-layout {
+    flex-direction: column;
+  }
+
+  .product-main,
+  .similar-products {
+    align-items: center;
+    text-align: center;
+  }
+
+  .recommendations {
+    justify-content: center;
+  }
+
+  .similar-products {
+    margin-top: 20px;
+  }
+}
+
+.product-main img {
+  max-width: 800px;
+  width: 100%;
+  height: auto;
 }

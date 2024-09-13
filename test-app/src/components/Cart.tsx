@@ -8,11 +8,17 @@ const Cart: React.FC = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 
   const handleQuantityChange = (productName: string, quantity: number) => {
-    updateQuantity(productName, quantity);
+    if (quantity >= 0) { // Ensure quantity is not negative
+      updateQuantity(productName, quantity);
+    }
   };
 
   const handleClearCart = () => {
     cartItems.forEach(item => removeFromCart(item.name));
+  };
+
+  const getTotalPrice = () => {
+    return cartItems.reduce((total, item) => total + (parseFloat(item.price.replace('$', '')) * (item.quantity || 0)), 0).toFixed(2);
   };
 
   return (
@@ -25,22 +31,40 @@ const Cart: React.FC = () => {
         <>
           <ul>
             {cartItems.map((item, index) => (
-              <li key={index}>
+              <li key={index} className="cart-item">
                 <img src={item.imageUrl} alt={item.name} />
-                <div>
+                <div className="item-details">
                   <p>{item.name}</p>
                   <p>{item.price}</p>
                   <div className="quantity-controls">
-                    <button onClick={() => handleQuantityChange(item.name, (item.quantity || 0) - 1)}>-</button>
+                    <button 
+                      onClick={() => handleQuantityChange(item.name, (item.quantity || 0) - 1)} 
+                      className="quantity-button"
+                    >
+                      -
+                    </button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => handleQuantityChange(item.name, (item.quantity || 0) + 1)}>+</button>
+                    <button 
+                      onClick={() => handleQuantityChange(item.name, (item.quantity || 0) + 1)} 
+                      className="quantity-button"
+                    >
+                      +
+                    </button>
                   </div>
-                  <button onClick={() => removeFromCart(item.name)}>Remove</button>
+                  <button 
+                    onClick={() => removeFromCart(item.name)} 
+                    className="remove-button"
+                  >
+                    Remove
+                  </button>
                 </div>
               </li>
             ))}
           </ul>
-          <button className="clear-cart" onClick={handleClearCart}>Clear Cart</button>
+          <div className="cart-total">
+            <p>Total: ${getTotalPrice()}</p>
+            <button className="clear-cart" onClick={handleClearCart}>Clear Cart</button>
+          </div>
         </>
       )}
     </div>

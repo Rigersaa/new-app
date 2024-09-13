@@ -1,21 +1,24 @@
-// src/components/Breadcrumb.tsx
 import React from 'react';
-import './Breadcrumb.css';
+import '../styles/Breadcrumb.css';
 
-interface BreadcrumbProps {
+type BreadCrumbProps = {
   categories: string[];
-}
+  currentProduct: string;
+};
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ categories }) => {
+const BreadCrumb: React.FC<BreadCrumbProps> = ({ categories, currentProduct }) => {
   return (
     <nav className="breadcrumb">
-      {categories.map((category, index) => (
-        <span key={index}>
-          {category} {index < categories.length - 1 && ' / '}
-        </span>
-      ))}
+      <ul>
+        {categories.map((category, index) => (
+          <li key={index}>
+            <a href={`/${category.toLowerCase()}`}>{category}</a>
+          </li>
+        ))}
+        <li>{currentProduct}</li>
+      </ul>
     </nav>
   );
 };
 
-export default Breadcrumb;
+export default BreadCrumb;

@@ -155,3 +155,98 @@ button:hover {
 }
 
  
+/* App.css */
+
+/* Ensure that the overlay covers the entire viewport */
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Centered form container */
+.form-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px; /* Set a max width for the form container */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional form styling */
+.form-container h2 {
+  margin-top: 0;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+.form-container p {
+  margin: 10px 0 0;
+}
+
+.form-container a {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.form-container a:hover {
+  text-decoration: underline;
+}
+
+/* App.css */
+
+.content {
+  display: flex;
+  flex-direction: row; /* Keep sidebar and main content in a row */
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sorting-dropdown {
+  margin-bottom: 16px; /* Space between sorting dropdown and product grid */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  gap: 16px; /* Space between grid items */
+  margin-top: 16px; /* Space between sorting dropdown and product grid */
+}

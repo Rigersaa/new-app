@@ -1,58 +1,108 @@
-/* src/styles/ProductGrid.css */
+/* ProductGrid.css */
+
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px;
-  gap: 17px;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 1200px; /* Adjust as needed */
 }
 
 .product-item {
-  width: calc(33.333% - 17px); /* 3 items per row with a gap */
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
+  flex: 1 1 calc(33.333% - 16px); /* 3 items per row, minus the gap */
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.product-item img {
+.product-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
   width: 100%;
-  height: auto;
-  max-height: 200px; /* Ensure images do not exceed a certain height */
-  object-fit: cover;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+.product-name {
+  font-size: 1.1rem;
+  margin: 8px 16px;
+}
+
+.product-price {
+  font-size: 1rem;
+  color: #333;
+  margin: 8px 16px;
+}
+
+.add-to-cart {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #0056b3;
 }
 
 .bestseller {
-  background-color: red;
-  color: white;
-  padding: 5px;
-  font-size: 12px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 8px;
+  background-color: #ff0;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  color: #333;
 }
 
-/* Pagination styles */
 .pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  text-align: center;
+  margin: 16px 0;
 }
 
 .pagination-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
   padding: 8px 16px;
-  margin: 0 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
   cursor: pointer;
 }
 
 .pagination-button:disabled {
-  background-color: #6c757d;
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
 .pagination-info {
-  display: flex;
-  align-items: center;
+  margin: 0 16px;
+  font-size: 1rem;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-item {
+    flex: 1 1 calc(50% - 16px); /* 2 items per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-item {
+    flex: 1 1 100%; /* 1 item per row on very small screens */
+  }
+}
+
+

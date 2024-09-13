@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
 import ProductDetail from './components/ProductDetails';
-import FilterSidebar from './components/FilterSIdebar';
+import FilterSidebar from './components/FilterSIdebar'; // Fixed typo
 import ProductGrid from './components/ProductGrid';
 import Cart from './components/Cart';
 import { CartProvider } from './context/CartContext';
 import advert from '../src/assets/Group 44 (2).png';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import SortingDropdown from './components/SortingDropdown';
 
 // Import the images
 import Black from './assets/dog1.png';
@@ -55,17 +56,22 @@ const App: React.FC = () => {
   const [products, setProducts] = useState(allProducts);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [showSignup, setShowSignup] = useState<boolean>(false);
+  const [showLogin, setShowLogin] = useState<boolean>(true);
+
+  const handleSortChange = (sortOption: string) => {
+    let sortedProducts = [...products];
+    if (sortOption === 'Alphabetically') {
+      sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === 'Price: Low to High') {
+      sortedProducts.sort((a, b) => parseFloat(a.price.replace('$', '')) - parseFloat(b.price.replace('$', '')));
+    } else if (sortOption === 'Price: High to Low') {
+      sortedProducts.sort((a, b) => parseFloat(b.price.replace('$', '')) - parseFloat(a.price.replace('$', '')));
+    }
+    setProducts(sortedProducts);
+  };
 
   const applyFilters = (filters: { category: string[], priceRange: string[] }) => {
     let filteredProducts = allProducts;
-
-    const handleSignupLinkClick = () => {
-      setShowSignup(true);
-    };
-  
-    const handleLoginLinkClick = () => {
-      setShowSignup(false);
-    };
 
     if (filters.category.length) {
       filteredProducts = filteredProducts.filter(product => filters.category.includes(product.category));
@@ -87,22 +93,61 @@ const App: React.FC = () => {
     setProducts(filteredProducts);
   };
 
+  const handleSignupClick = () => {
+    setShowSignup(true);
+    setShowLogin(false);
+  };
+
+  const handleLoginClick = () => {
+    setShowSignup(false);
+    setShowLogin(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
   return (
     <CartProvider>
       <div className="main-container">
-        <header>
-          <Cart />
-        </header>
-        <ProductDetail 
-          name="Samurai King Resting"
-          price="$10000.00"
-          description="So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book."
-          imageUrl={advert} // Correctly pass the advert image URL
-        />
-        <div className="content">
-          <FilterSidebar onFilterChange={applyFilters} />
-          <ProductGrid products={products} />
-        </div>
+        {/* Render login and signup forms conditionally */}
+        {!isAuthenticated && (
+          <div className="form-overlay">
+            {showLogin && !isAuthenticated && (
+              <LoginForm 
+                setIsAuthenticated={setIsAuthenticated} 
+                onSignupClick={handleSignupClick} 
+              />
+            )}
+            {showSignup && !isAuthenticated && (
+              <SignupForm onLoginClick={handleLoginClick} />
+            )}
+          </div>
+        )}
+
+        {/* Show content only if authenticated */}
+        {isAuthenticated && (
+          <>
+            <header>
+              <Cart />
+              <button onClick={handleLogout}>Logout</button>
+            </header>
+            
+            <ProductDetail 
+              name="Samurai King Resting"
+              price="$10000.00" // Correct price as a string
+              description="So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book."
+              imageUrl={advert} // Correctly pass the advert image URL
+            />
+            <div className="content">
+              <FilterSidebar onFilterChange={applyFilters} />
+              <div className="main-content">
+                <SortingDropdown onSortChange={handleSortChange} />
+                <ProductGrid products={products} />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </CartProvider>
   );
