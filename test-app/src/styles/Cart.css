@@ -1,0 +1,76 @@
+/* src/styles/Cart.css */
+
+/* Base styles for the cart */
+.cart-dropdown {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: none; /* Hidden by default */
+  z-index: 1000;
+}
+
+/* Make cart visible when items are added */
+.cart-dropdown.show {
+  display: block;
+}
+
+.cart-icon {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  margin: 0 5px;
+}
+
+@media (max-width: 768px) {
+  .cart-dropdown {
+    width: 100%;
+    right: 0;
+    top: 0;
+  }
+  
+  .cart-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .quantity-controls button {
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-dropdown {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .cart-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .quantity-controls button {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+}

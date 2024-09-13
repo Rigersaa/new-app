@@ -1,0 +1,10 @@
+.breadcrumb {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .breadcrumb span {
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,55 @@
+.product-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.product-image img {
+  width: 400px;
+  height: auto;
+}
+
+.product-info {
+  flex: 2;
+  margin-left: 20px;
+}
+
+.people-also-buy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.people-also-buy img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+#root > div > div.product-detail > div.similar-products {
+  text-align: right;
+  margin-top: -9rem;
+  margin-right: 12rem;
+  gap: 20px;
+}
+
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px; /* Set max width for product info */
+}
+
+.product-info h1,
+.product-info p {
+  margin: 0;
+  line-height: 1.5; /* Improve readability */
+}
+
+
+#root > div > div.product-detail > div.details {
+    text-align: right;
+    margin-right: 12rem;
+    margin-top: 4rem;
+}
